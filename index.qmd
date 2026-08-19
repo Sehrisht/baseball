@@ -7,4 +7,17 @@ Welcome to Baseball
 
 Explore the history of Major League Baseball through data. This site uses the Lahman database to uncover stories, trends, and insights from more than a century of baseball history.
 
+This site explores the history of Major League Baseball through the
+Lahman database, a record of every team and player season since 1871.
+
+The **Home runs** page starts with a puzzle: total home runs seem to
+collapse in 1981, 1994, and 2020. The collapse is an illusion of
+shortened seasons — measured per game, those years are ordinary, and
+the rate instead reveals baseball's changing offensive eras. The
+**Sluggers** page looks at career home run leaders and shows how many
+of baseball's biggest power hitters emerged during the high-offense
+era.
+
+Use the analysis pages in the navbar to explore the data and see how
+the numbers reveal changes in Major League Baseball over time.
 
