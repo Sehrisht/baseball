@@ -1,0 +1,15 @@
+---
+title: "Home Runs"
+format: html
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library(Lahman)
+
+Teams
+```
+
+
