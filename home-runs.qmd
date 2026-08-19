@@ -9,7 +9,74 @@ format: html
 library(tidyverse)
 library(Lahman)
 
-Teams
+Teams |> select(yearID, name, G, HR)
 ```
 
+```{r}
+Teams |> group_by(yearID) |>
+    summarise(HR = sum(HR, na.rm = TRUE),
+    team_games = sum(G), .groups = "drop")
+```
+
+```{r}
+Teams |>
+  group_by(yearID) |>
+  summarise(HR = sum(HR, na.rm = TRUE), .groups = "drop") |>
+  ggplot(aes(x = yearID, y = HR)) +
+  geom_line(color = "grey60") +
+  geom_point(size = 0.7, color = "navy") +
+  labs(
+    title = "Total home runs per season, with some puzzling collapses",
+    subtitle = "Major League Baseball, 1871-2025",
+    x = "Season",
+    y = "Total home runs",
+    caption = "Source: Lahman Teams table"
+  )
+```
+
+```{r}
+Teams |>
+  group_by(yearID) |>
+  summarise(HR = sum(HR, na.rm = TRUE),
+            team_games = sum(G),
+            .groups = "drop") |>
+  mutate(hr_per_game = HR / team_games) |>
+  filter(yearID %in% c(2019, 1981, 1994, 2020))
+```
+
+```{r}
+Teams |> group_by(yearID) |> summarize(HR = sum(HR, na.rm = TRUE),
+team_games = sum(G),
+.groups = "drop") |> 
+        mutate(hr_per_game = HR / team_games) |>
+ggplot(aes(x = yearID, y = hr_per_game)) +
+geom_line(color = "grey60") +
+geom_point(size = 0.7, color = "navy") +
+labs(title = "Home runs per game reveal baseball's real eras", 
+    subtitle = "MLB home runs per team per game, 1871-2025",
+    x = "Season",
+    y = "Home runs per game",
+    caption = "Source: Lahman Teams table"
+  )
+```
+
+```{r}
+#| cache: true
+Teams |> group_by(yearID) |> summarize(HR = sum(HR, na.rm = TRUE),
+team_games = sum(G),
+.groups = "drop") |> mutate(hr_per_game = HR / team_games, shortened = yearID %in% c(1918, 1919, 1981, 1994, 1995, 2020)) |> ggplot(aes(x = yearID, y = hr_per_game)) + geom_line(color = "grey70") +
+  geom_point(aes(color = shortened), size = 1.1) +
+  scale_color_manual(
+    values = c(`FALSE` = "navy", `TRUE` = "red"),
+    labels = c("Full season", "Shortened season"),
+    name = NULL
+  ) +
+  labs(
+    title = "Home runs per game reveal baseball's real eras",
+    subtitle = "MLB home runs per team per game, 1871-2025",
+    x = "Season",
+    y = "Home runs per game",
+    caption = "Source: Lahman Teams table"
+  )
+```
 

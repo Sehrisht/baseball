@@ -3,6 +3,8 @@ title: "Baseball"
 ---
 
 # Baseball
-This website is about baseball.
+Welcome to Baseball
+
+Explore the history of Major League Baseball through data. This site uses the Lahman database to uncover stories, trends, and insights from more than a century of baseball history.
 
 
